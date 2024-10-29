@@ -1,0 +1,16 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.button{
+    &.submit{
+        @include m.btnLarge(v.$blue, v.$white);
+        margin-top: 4rem;
+        max-width: 40rem;
+        @include m.tablet{
+            max-width: 20rem;
+        }
+    
+    }
+
+    
+}

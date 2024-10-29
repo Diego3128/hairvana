@@ -1,0 +1,69 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin phone {
+    @media (min-width: v.$phone) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+
+
+//buttons
+@mixin btnLarge($bg: #000, $color: #fff) {
+    display: block;
+    width: 95%;
+    padding: 1.5rem 1rem;
+    outline: none;
+    border: none;
+    color: $color;
+    background: $bg;
+    border-radius: 1.5rem;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: 0 auto 1.5rem;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        opacity: .8;
+    }
+}
+
+@mixin btnSmall($bg: #000, $color: #fff) {
+    display: inline-block;
+    width: fit-content;
+    outline: none;
+    border: none;
+    padding: 1.5rem 1rem;
+    color: $color;
+    background: $bg;
+    border-radius: 1.5rem;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin: 0 auto;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        opacity: .8;
+    }
+}
+
+@mixin grid($columns: 2, $gap: 3rem ) {
+    display: grid;
+    gap: $gap;
+    grid-template-columns: repeat($columns, 1fr);
+}

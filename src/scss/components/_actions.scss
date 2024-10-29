@@ -1,0 +1,20 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.actions{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    row-gap: 2rem;
+    @include m.desktop{
+        flex-direction: row;
+        padding: 0 2rem;
+        justify-content: space-between;
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+        font-size: 2rem;
+        text-decoration: underline;
+    }
+}

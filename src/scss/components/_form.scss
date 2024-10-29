@@ -1,0 +1,30 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+.form{
+    margin: 2rem auto;
+    padding: 3rem 2rem;
+    width: min(90%, 70rem);
+
+    .field{
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        column-gap: 2rem;
+
+        label{
+            min-width: 10rem;
+            font-weight: v.$bold;
+        }
+        input[type="text"], 
+        input[type="password"],
+        input[type="email"],
+        input[type="text"],
+        input[type="tel"]{
+            border: none;
+            width: 70%;
+            padding: calc(v.$separation/4);
+            border-radius: 1rem;
+        }
+    }
+
+}

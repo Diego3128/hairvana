@@ -1,0 +1,20 @@
+{
+    "name": "diegoperez/hairvana",
+    "description": "php 8, mvc, gulp, sass, javascript, sql.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Model\\": "./models",
+            "Controllers\\": "./controllers",
+            "MVC\\": "./"
+
+        }
+    },
+    "authors": [
+        {
+            "name": "DiegoFabian",
+            "email": "dfperez2001@gmail.com"
+        }
+    ],
+    "require": {}
+}

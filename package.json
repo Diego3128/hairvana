@@ -1,0 +1,26 @@
+{
+  "name": "hairvana",
+  "version": "1.0.0",
+  "description": "Web service for a hair salon business that allows clients to schedule their appointments",
+  "author": "diego perez dfperez2001@gmail.com",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "glob": "^10.3.12",
+    "gulp": "^5.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.80.4",
+    "sharp": "^0.33.3"
+  }
+}

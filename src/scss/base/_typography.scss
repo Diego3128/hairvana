@@ -1,0 +1,57 @@
+@use 'variables' as v;
+
+h1, h2, h3 {
+    font-family: v.$main_font;
+    margin: 0 0 calc(v.$separation / 2) 0 ;
+    font-weight: 900;
+    color: v.$white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.7rem;
+}
+h2 {
+    font-size: 3.2rem;
+}
+h3 {
+    font-size: 2.8rem;
+    text-align: center;
+}
+p {
+    color: v.$white;
+    font-size: 2rem;
+}
+
+
+.page-name{
+    position: relative;
+    text-align: center;
+    margin: 5rem 0;
+    font-weight: v.$bold;
+    width: fit-content;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+.page-name::after{
+    content: '';
+    position: absolute;
+    display: block;
+    height: .6rem;
+    background: v.$blue;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    border-radius: 2rem;
+    animation: bouncingBorder 5s infinite alternate-reverse ease-in-out;
+}
+
+.page-description{
+    text-align: center;
+}
+
+@keyframes bouncingBorder {
+    to{
+        width: 100%;
+    }
+}
