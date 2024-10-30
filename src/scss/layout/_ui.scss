@@ -21,20 +21,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 4rem;
+        font-size: 6rem;
         color: #ffffff6c;
         width: 100%;
         height: 100%;
         font-family: fantasy;
         text-shadow: 2px 2px #00000084;
         @include m.tablet{
-        font-size: 8rem;
+        font-size: 9rem;
         }
     }
     .app{
         width: 90%;
         margin: 0 auto;
-        padding: 3rem 0;
+        padding: 8rem 0;
     }
 }
 
