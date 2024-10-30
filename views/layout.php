@@ -11,7 +11,7 @@
 
 <body>
     <div class="app-container">
-        <div class="image"></div>
+        <div class="image image-1"></div>
         <div class="app">
             <?php echo $content; ?>
         </div>

@@ -5,15 +5,22 @@
     @include m.tablet{
         @include m.grid();
         min-height: 100dvb;
+        grid-template-columns: 1.3fr 2fr;
     }
     .image{
         position: relative;
         min-height: 20vh;
-        background-image: url(../img/1.jpg);
+        max-height: 20vh;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
         box-shadow: 2px 2px v.$blue 3rem -1.5rem;
+        @include m.tablet{
+            max-height: 100dvh;
+        }
+    }
+    .image-1{
+        background-image: url(../img/1.jpg);
     }
     .image::after{
         position: absolute;
@@ -28,7 +35,7 @@
         font-family: fantasy;
         text-shadow: 2px 2px #00000084;
         @include m.tablet{
-        font-size: 9rem;
+        font-size: 5rem;
         }
     }
     .app{

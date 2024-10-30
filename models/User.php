@@ -9,7 +9,7 @@ class User extends ActiveRecord
     // each column name of a certain table (same names)
     protected static $dbColumns = ['id', 'name', 'lastname', 'email', 'password', 'phone', 'admin', 'verified', 'token', 'created'];
     // Possible erros when trying to create an instance
-    protected static $alerts = ['user' => "user"];
+    protected static $alerts = [];
 
     //attributes (columns)
     public $id;

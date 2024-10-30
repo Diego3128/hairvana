@@ -8,6 +8,7 @@
         max-width: 40rem;
         @include m.tablet{
             max-width: 20rem;
+            display: inline-block;
         }
     
     }
