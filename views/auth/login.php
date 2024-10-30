@@ -4,11 +4,11 @@
 <form action="/" method="POST" class="form">
     <div class="field">
         <label for="email">Correo</label>
-        <input type="email" name="email" id="email" placeholder="Tu correo">
+        <input type="email" name="user[email]" id="email" placeholder="Tu correo">
     </div>
     <div class="field">
         <label for="password">Contraseña</label>
-        <input type="password" name="password" id="password" placeholder="Tu contraseña">
+        <input type="password" name="user[password]" id="password" placeholder="Tu contraseña">
     </div>
 
     <input type="submit" value="Iniciar sesión" class="button submit">

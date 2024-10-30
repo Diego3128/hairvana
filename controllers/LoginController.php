@@ -3,16 +3,18 @@
 namespace Controllers;
 
 use MVC\Router;
+use Model\User;
 
 class LoginController
 {
-
     public static function login(Router $router)
     {
+        // get and post: "/" (login)
         $router->render("auth/login");
     }
     public static function logout(Router $router)
     {
+        // $router->get(url: "/logout", fn: [LoginController::class, "logout"]);
         echo "/logout";
     }
     public static function forgotPass(Router $router)
@@ -26,6 +28,24 @@ class LoginController
     }
     public static function create(Router $router)
     {
-        $router->render("auth/create-account");
+        // get and post, url: "/create-account"
+        $user = new User;
+        $alerts = User::getAlerts();
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $user->synchronize($_POST["user"]);
+            $user->validateInputs();
+            $alerts = User::getAlerts();
+            if (empty($alerts)) {
+                //check if the email already exists
+
+                //create the user
+            }
+        }
+        $data = [
+            "user" => $user,
+            "alerts" => $alerts
+        ];
+
+        $router->render("auth/create-account", $data);
     }
 }

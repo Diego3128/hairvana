@@ -11,10 +11,7 @@ abstract class ActiveRecord
     // each column name of a certain table
     protected static $dbColumns = [];
     // Possible erros when trying to create an instance
-    protected static $errors = ['AR'];
-    //alerts and messages
-    protected static $alerts = ['ARR'];
-
+    protected static $alerts = ['AR' => "active record"];
 
     // set the connection to db
     public static function setDB($database)
@@ -27,7 +24,7 @@ abstract class ActiveRecord
         static::$alerts[$type] = $message;
     }
     //validate
-    public static function getAlerts()
+    public static function getAlerts(): array
     {
         return static::$alerts;
     }
@@ -147,7 +144,7 @@ abstract class ActiveRecord
             header("location: /admin?result=4");
         }
     }
-    //delete a record
+    //delete a record by its id
     public function delete(): void
     {
         $query = "DELETE FROM " . static::$tableName . " WHERE id={$this->id} LIMIT 1";
@@ -189,12 +186,6 @@ abstract class ActiveRecord
         return $sanitizedArray;
     }
 
-    // get errors
-    public static function getErrors(): array
-    {
-        //return static attribute 'errors' defined in each class
-        return static::$errors;
-    }
     //validate inputs
     public function validateInputs(): array
     {
