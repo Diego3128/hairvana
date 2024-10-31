@@ -16,7 +16,7 @@
         background-repeat: no-repeat;
         box-shadow: 2px 2px v.$blue 3rem -1.5rem;
         @include m.tablet{
-            max-height: 100dvh;
+            max-height: 100%;
         }
     }
     .image-1{
@@ -42,6 +42,9 @@
         width: 90%;
         margin: 0 auto;
         padding: 8rem 0;
+    }
+    .text-blue{
+        color: v.$blue;
     }
 }
 

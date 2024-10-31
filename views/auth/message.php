@@ -1,0 +1,2 @@
+<h1 class="page-name">Activa tu cuenta</h1>
+<p class="page-description">Las instrucciones para activar tu cuenta han sido enviadas a tu correo <span class="text-blue"> <?php echo $email ?> </span></p>

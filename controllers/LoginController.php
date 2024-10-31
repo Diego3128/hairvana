@@ -1,9 +1,10 @@
 <?php
 
 namespace Controllers;
-
+//import classes
 use MVC\Router;
 use Model\User;
+use Classes\Email;
 
 class LoginController
 {
@@ -35,10 +36,27 @@ class LoginController
             $user->synchronize($_POST["user"]);
             $user->validateInputs();
             $alerts = User::getAlerts();
+            //
             if (empty($alerts)) {
                 //check if the email already exists
+                $result = $user->userExists();
 
-                //create the user
+                if ($result->num_rows > 0) {
+                    $alerts = User::getAlerts();
+                } else {
+                    //create a hashed password
+                    $user->hashPassword();
+                    //create a token for email validation
+                    $user->generateToken();
+                    //send email with the token
+
+                    $email = new Email($user->email, $user->name, $user->token);
+
+                    if ($email->sendConfirmationEmail()) {
+                        $result = $user->save();
+                        if ($result) header("location: /message?email=" . $user->email);
+                    }
+                }
             }
         }
         $data = [
@@ -47,5 +65,17 @@ class LoginController
         ];
 
         $router->render("auth/create-account", $data);
+    }
+    //message
+    public static function message(Router $router)
+    {
+        $data = ["email" => $_GET["email"] ?? ''];
+        $router->render("auth/message", $data);
+    }
+
+    //validate an account
+    public static function validate(Router $router)
+    {
+        debugAndFormat($_GET);
     }
 }

@@ -7,7 +7,7 @@ class User extends ActiveRecord
     //name of the table in db
     protected static $tableName = 'users';
     // each column name of a certain table (same names)
-    protected static $dbColumns = ['id', 'name', 'lastname', 'email', 'password', 'phone', 'admin', 'verified', 'token', 'created'];
+    protected static $dbColumns = ['id', 'name', 'lastname', 'email', 'password', 'phone', 'admin', 'verified', 'token'];
     // Possible erros when trying to create an instance
     protected static $alerts = [];
 
@@ -30,10 +30,9 @@ class User extends ActiveRecord
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->phone = $args['phone'] ?? '';
-        $this->admin = $args['admin'] ?? null;
-        $this->verified = $args['verified'] ?? null;
+        $this->admin = $args['admin'] ?? '0';
+        $this->verified = $args['verified'] ?? '0';
         $this->token = $args['token'] ?? '';
-        // debugAndFormat("working");
     }
     //validation alerts
     public function validateInputs(): array
@@ -55,5 +54,26 @@ class User extends ActiveRecord
         }
 
         return self::$alerts;
+    }
+    //check if the email exists in the table
+    public function userExists()
+    {
+        $query = "SELECT email FROM " . static::$tableName . " WHERE email = '" . $this->email . "' LIMIT 1";
+
+        $result = self::$db->query($query);
+
+        if ($result->num_rows > 0) self::$alerts["error"][] = "El correo es ya está registrado";
+
+        return $result;
+    }
+    //hash password
+    public function hashPassword()
+    {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+    //generate token for email validation
+    public function generateToken()
+    {
+        $this->token = uniqid(more_entropy: true);
     }
 }

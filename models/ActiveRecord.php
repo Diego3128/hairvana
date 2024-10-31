@@ -90,10 +90,10 @@ abstract class ActiveRecord
         //a id attribute is null when the object is in memory
         if (!is_null($this->id)) {
             //update  a record
-            $this->update();
+            return $this->update();
         } else {
             //create a new record
-            $this->create();
+            return $this->create();
         }
     }
     //update a record
@@ -119,11 +119,10 @@ abstract class ActiveRecord
         }
     }
     // create a new record
-    protected function create(): void
+    protected function create()
     {
         //Get an array with the sanitized attributes
         $attributes = $this->sanitizeAttributes();
-
         //separate column name and values
         $columns = join(", ", array_keys($attributes));
         $values = join("','", array_values($attributes));
@@ -139,9 +138,9 @@ abstract class ActiveRecord
         //insertion queries return a boolean
 
         if ($result) {
-            header("location: /admin?result=1");
+            return true;
         } else {
-            header("location: /admin?result=4");
+            return false;
         }
     }
     //delete a record by its id
@@ -223,7 +222,7 @@ abstract class ActiveRecord
             foreach ($args as $key => $value) {
                 //check if the key is a property in the current object
                 if (property_exists($this, $key) && (!is_null($value) && !empty($value))) {
-                    $this->$key = $value;
+                    $this->$key = trim($value);
                 }
             }
         }
