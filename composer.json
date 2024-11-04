@@ -8,7 +8,6 @@
             "Controllers\\": "./controllers",
             "MVC\\": "./",
             "Classes\\": "./classes"
-
         }
     },
     "authors": [

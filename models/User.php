@@ -74,6 +74,6 @@ class User extends ActiveRecord
     //generate token for email validation
     public function generateToken()
     {
-        $this->token = uniqid(more_entropy: true);
+        $this->token = uniqid(prefix: "hairvana_", more_entropy: true);
     }
 }

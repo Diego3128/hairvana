@@ -21,7 +21,7 @@ abstract class ActiveRecord
     //set alerts
     public static function setAlert($type, $message)
     {
-        static::$alerts[$type] = $message;
+        static::$alerts[$type][] = $message;
     }
     //validate
     public static function getAlerts(): array
@@ -32,6 +32,16 @@ abstract class ActiveRecord
     public static function findById(int $id): object | null
     {
         $query = "SELECT * FROM " . static::$tableName . " WHERE id={$id}";
+
+        $result = self::querySQL($query);
+
+        return array_shift($result);
+    }
+    // Search a record by a column and value
+    public static function where(string $column, string $value): object | null
+    {
+        $value = trim(self::$db->escape_string($value));
+        $query = "SELECT * FROM " . static::$tableName . " WHERE {$column} = '{$value}' LIMIT 1";
 
         $result = self::querySQL($query);
 
@@ -115,7 +125,9 @@ abstract class ActiveRecord
         $result = self::$db->query($query);
 
         if ($result) {
-            header("location: /admin?result=2");
+            return true;
+        } else {
+            return false;
         }
     }
     // create a new record

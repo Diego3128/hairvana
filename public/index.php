@@ -23,8 +23,8 @@ $router->post(url: "/password/request", fn: [LoginController::class, "forgotPass
 $router->get(url: "/password/reset", fn: [LoginController::class, "resetPass"]);
 $router->post(url: "/password/reset", fn: [LoginController::class, "resetPass"]);
 //confirm account
-$router->get(url: "/validate-account", fn: [LoginController::class, "validate"]);
 $router->get(url: "/message", fn: [LoginController::class, "message"]);
+$router->get(url: "/validate-account", fn: [LoginController::class, "validate"]);
 
 //check routes
 $router->verifyRoutes();

@@ -49,7 +49,6 @@ class LoginController
                     //create a token for email validation
                     $user->generateToken();
                     //send email with the token
-
                     $email = new Email($user->email, $user->name, $user->token);
 
                     if ($email->sendConfirmationEmail()) {
@@ -76,6 +75,28 @@ class LoginController
     //validate an account
     public static function validate(Router $router)
     {
-        debugAndFormat($_GET);
+
+        $token = stzr($_GET["token"]);
+
+        $user = User::where("token", $token);
+
+        if ($user) {
+            User::setAlert("success", "Cuenta confirmada correctamente. Inicia sesión");
+            //verify user
+            $user->verified = "1";
+            //delete token
+            $user->token = null;
+            $user->save();
+        } else {
+            User::setAlert("error", "Token invalido o expirado");
+        }
+
+        $alerts = User::getAlerts();
+
+        $data = [
+            "alerts" => $alerts
+        ];
+
+        $router->render("auth/validate-account", $data);
     }
 }
