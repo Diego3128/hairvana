@@ -8,10 +8,52 @@ use Classes\Email;
 
 class LoginController
 {
+    // get and post: "/" (login)
     public static function login(Router $router)
     {
-        // get and post: "/" (login)
-        $router->render("auth/login");
+        //init alerts
+        $alerts = User::getAlerts();
+        //check when the form is sent
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            //create a user instance using only the email and password
+            $auth = new User($_POST["user"]);
+            debugAndFormat($auth);
+            //validate inputs
+            $alerts = $auth->validateLogin();
+            //if inputs are correct then check in db
+            if (empty($alerts)) {
+                //check email and bring an user with that email
+                $user = User::where(column: "email", value: $auth->email);
+
+                if ($user) {
+                    //check if user is verified
+                    if ($user->checkVerifiedAndPassword($auth->password)) {
+                        //authenticate user (session is already started for the router)
+                        $_SESSION["id"] = $user->id;
+                        $_SESSION["name"] = $user->name . " " . $user->lastname;
+                        $_SESSION["loggedin"] = true;
+                        //check if it's an admin
+                        if ($user->admin === "1") {
+                            //admin
+                            $_SESSION["admin"] = $user->admin ?? null;
+                            header("location: /admin");
+                        } else {
+                            //client
+                            header("location: /appointment");
+                        }
+                    };
+                } else {
+                    User::setAlert("error", "No existe un usuario con el correo: " . $auth->email);
+                }
+            }
+        }
+        $alerts = User::getAlerts();
+
+        $data = [
+            "alerts" => $alerts
+        ];
+
+        $router->render("auth/login", $data);
     }
     public static function logout(Router $router)
     {

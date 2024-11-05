@@ -55,6 +55,18 @@ class User extends ActiveRecord
 
         return self::$alerts;
     }
+    //validate login
+    public function validateLogin(): array
+    {
+        static::$alerts = [];
+
+        if (!preg_match("/^[\w\.\-]+@[a-zA-Z\d\-]+\.[a-zA-Z]{2,}$/", $this->email)) self::$alerts["error"][] = "El correo es invalido";
+
+        if (!$this->password) self::$alerts["error"][] = "La contraseña es necesaria";
+
+        return self::$alerts;
+    }
+
     //check if the email exists in the table
     public function userExists()
     {
@@ -62,7 +74,7 @@ class User extends ActiveRecord
 
         $result = self::$db->query($query);
 
-        if ($result->num_rows > 0) self::$alerts["error"][] = "El correo es ya está registrado";
+        if ($result->num_rows > 0) self::$alerts["error"][] = "El correo ya está registrado";
 
         return $result;
     }
@@ -75,5 +87,22 @@ class User extends ActiveRecord
     public function generateToken()
     {
         $this->token = uniqid(prefix: "hairvana_", more_entropy: true);
+    }
+    //check if user is verified and if the password matches the hash
+    public function checkVerifiedAndPassword($password)
+    {
+        $result = password_verify(password: $password, hash: $this->password);
+
+        if (!$result) {
+            self::$alerts['error'][] = 'Contraseña incorrecta';
+            return false;
+        }
+
+        if ($this->verified !== '1') {
+            self::$alerts['error'][] = 'La cuenta no está verificada';
+            return false;
+        } else {
+            return true;
+        }
     }
 }

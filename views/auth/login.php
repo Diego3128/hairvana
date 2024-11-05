@@ -1,6 +1,11 @@
 <h1 class="page-name">Inicia sesión</h1>
 <p class="page-description">Inicia sesión y crea una cita!</p>
 
+<!-- alerts -->
+<?php include_once __DIR__ . "/../templates/alerts.php";
+?>
+
+
 <form action="/" method="POST" class="form">
     <div class="field">
         <label for="email">Correo</label>
