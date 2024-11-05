@@ -9,10 +9,10 @@
         text-transform: uppercase;
         color: v.$white;
         background-color: v.$darkerBlack;
-        margin-bottom: 1.3rem;
+        margin: 0 auto 1.3rem;
         text-align: center;
         font-weight: v.$bold;
-        border: 4px solid v.$blue;
+        border: 3px solid v.$blue;
         font-size: 1.5rem;
         transition: transform 300ms ease-in-out;
         &.error{

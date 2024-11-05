@@ -17,7 +17,6 @@ class LoginController
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //create a user instance using only the email and password
             $auth = new User($_POST["user"]);
-            debugAndFormat($auth);
             //validate inputs
             $alerts = $auth->validateLogin();
             //if inputs are correct then check in db
