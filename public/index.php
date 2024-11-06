@@ -18,10 +18,10 @@ $router->get(url: "/logout", fn: [LoginController::class, "logout"]);
 $router->get(url: "/create-account", fn: [LoginController::class, "create"]);
 $router->post(url: "/create-account", fn: [LoginController::class, "create"]);
 //generate new password
-$router->get(url: "/password/request", fn: [LoginController::class, "forgotPass"]);
-$router->post(url: "/password/request", fn: [LoginController::class, "forgotPass"]);
-$router->get(url: "/password/reset", fn: [LoginController::class, "resetPass"]);
-$router->post(url: "/password/reset", fn: [LoginController::class, "resetPass"]);
+$router->get(url: "/password-request", fn: [LoginController::class, "forgotPass"]);
+$router->post(url: "/password-request", fn: [LoginController::class, "forgotPass"]);
+$router->get(url: "/password-reset", fn: [LoginController::class, "resetPass"]);
+$router->post(url: "/password-reset", fn: [LoginController::class, "resetPass"]);
 //confirm account
 $router->get(url: "/message", fn: [LoginController::class, "message"]);
 $router->get(url: "/validate-account", fn: [LoginController::class, "validate"]);

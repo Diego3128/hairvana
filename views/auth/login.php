@@ -20,6 +20,6 @@
 </form>
 
 <div class="actions">
-    <a href="/password/request">¿Olvidaste tu contraseña?</a>
+    <a href="/password-request">¿Olvidaste tu contraseña?</a>
     <a href="/create-account">Crear cuenta</a>
 </div>
