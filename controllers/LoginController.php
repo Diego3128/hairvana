@@ -114,14 +114,13 @@ class LoginController
         //read the new password
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $newPassword = $_POST["password"] ?? '';
-            //validate the new password
+            //assign and validate the new password
             $user->password = $newPassword;
             $alerts = $user->validatePassword();
 
             if (empty($alerts)) {
-                //create a hashed password
+                //create a hashed password and delete token
                 $user->hashPassword();
-                //delete token
                 $user->token = null;
                 //update the user
                 if ($user->save()) {
@@ -131,7 +130,6 @@ class LoginController
                 }
             }
         }
-
         $alerts = User::getAlerts();
 
         $data = [
