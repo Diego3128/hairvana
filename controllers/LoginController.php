@@ -61,7 +61,39 @@ class LoginController
     }
     public static function forgotPass(Router $router)
     {
-        $data = [];
+        $alerts = User::getAlerts();
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $auth = new User($_POST);
+            $alerts = $auth->validateEmail();
+
+            if (empty($alerts)) {
+                //check if the user exists and verified
+                $user = User::where("email", $auth->email);
+
+                if ($user && $user->verified === "1") {
+                    //Create and save a new token
+                    $user->generateToken();
+                    $user->save();
+                    //send email
+                    $email = new Email($user->email, $user->name, $user->token);
+                    if ($email->sendInstructions()) {
+                        User::setAlert("success", "Revisa tu correo: " . $user->email . " para más información.");
+                    }
+                } else {
+                    User::setAlert("error", "La cuenta no existe o no está verificada");
+                }
+
+                //send token
+            }
+        }
+
+        $alerts = User::getAlerts();
+
+        $data = [
+            "alerts" => $alerts
+        ];
+
         $router->render("auth/password-request", $data);
     }
     public static function resetPass(Router $router)

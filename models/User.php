@@ -55,6 +55,15 @@ class User extends ActiveRecord
 
         return self::$alerts;
     }
+    //validate email
+    public function validateEmail()
+    {
+        if (!$this->email) {
+            self::$alerts["error"][] = "El correo es obligatorio";
+        } elseif (!preg_match("/^[\w\.\-]+@[a-zA-Z\d\-]+\.[a-zA-Z]{2,}$/", $this->email)) self::$alerts["error"][] = "El correo es invalido";
+
+        return self::$alerts;
+    }
     //validate login
     public function validateLogin(): array
     {
