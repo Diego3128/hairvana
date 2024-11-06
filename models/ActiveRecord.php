@@ -97,7 +97,7 @@ abstract class ActiveRecord
     //save a record (update or create)
     public function save()
     {
-        //a id attribute is null when the object is in memory
+        //an id attribute is null when the object is in memory and doesn't exist in the db
         if (!is_null($this->id)) {
             //update  a record
             return $this->update();

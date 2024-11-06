@@ -92,7 +92,7 @@ class Email
         //set email
         $phpmailer->setFrom("cuentashairvana@gmail.com", "harivana"); //domain
         $phpmailer->addAddress($this->email, $this->name);
-        $phpmailer->Subject = "Autenticacion cuenta hairvana";
+        $phpmailer->Subject = "Restablecer contraseña cuenta hairvana";
         $phpmailer->isHTML(true);
         $phpmailer->CharSet = "UTF-8";
 
@@ -112,7 +112,7 @@ class Email
         $content .= "<div class='container'>";
         $content .= "<h1>Restablece tu contraseña en HAIRVANA, {$this->name}.</h1>";
         $content .= "<p>Para crear una nueva contraseña, haz click en el botón a continuación:</p>";
-        $content .= '<p><a href="http://localhost:3000//password-reset?token=' . $this->token . '">Restablecer contraseña</a></p>';
+        $content .= '<p><a href="http://localhost:3000/password-reset?token=' . $this->token . '">Restablecer contraseña</a></p>';
         $content .= "<p>Si no solicitaste esto puedes ignorar el mensaje.</p>";
         $content .= "<p>Saludos,<br>El equipo de HAIRVANA</p>";
         $content .= "</div>";
@@ -124,7 +124,7 @@ class Email
         // Texto en caso de que el HTML no esté disponible
         $phpmailer->AltBody = "Restablece tu contraseña en HAIRVANA, {$this->name}.,\n\n"
             . "Para crear una nueva contraseña visita el siguiente enlace:\n"
-            . "http://localhost:3000//password-reset?token=$this->token \n\n"
+            . "http://localhost:3000/password-reset?token=$this->token \n\n"
             . "Si no solicitaste esto puedes ignorar el mensaje..\n\n"
             . "Saludos,\nEl equipo de HAIRVANA";
 

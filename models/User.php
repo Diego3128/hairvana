@@ -45,13 +45,9 @@ class User extends ActiveRecord
 
         if (strlen($this->phone) > 10 || !preg_match('/^[0-9]{10}$/', $this->phone)) self::$alerts["error"][] = "El telefono es invalido";
 
-        if (!preg_match("/^[\w\.\-]+@[a-zA-Z\d\-]+\.[a-zA-Z]{2,}$/", $this->email)) self::$alerts["error"][] = "El correo es invalido";
+        $this->validateEmail();
 
-        if (!$this->password) {
-            self::$alerts["error"][] = "La contraseña es necesaria";
-        } elseif (strlen($this->password) < 6) {
-            self::$alerts["error"][] = "La contraseña es muy corta. Al menos 6 caracteres.";
-        }
+        $this->validatePassword();
 
         return self::$alerts;
     }
@@ -61,6 +57,17 @@ class User extends ActiveRecord
         if (!$this->email) {
             self::$alerts["error"][] = "El correo es obligatorio";
         } elseif (!preg_match("/^[\w\.\-]+@[a-zA-Z\d\-]+\.[a-zA-Z]{2,}$/", $this->email)) self::$alerts["error"][] = "El correo es invalido";
+
+        return self::$alerts;
+    }
+    //validate password
+    public function validatePassword()
+    {
+        if (!$this->password) {
+            self::$alerts["error"][] = "La contraseña es necesaria";
+        } elseif (strlen($this->password) < 6) {
+            self::$alerts["error"][] = "La contraseña es muy corta. Al menos 6 caracteres.";
+        }
 
         return self::$alerts;
     }

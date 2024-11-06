@@ -79,12 +79,12 @@ class LoginController
                     $email = new Email($user->email, $user->name, $user->token);
                     if ($email->sendInstructions()) {
                         User::setAlert("success", "Revisa tu correo: " . $user->email . " para más información.");
+                    } else {
+                        User::setAlert("error", "No se pudo enviar un email de recuperación. Intenta más tarde.");
                     }
                 } else {
                     User::setAlert("error", "La cuenta no existe o no está verificada");
                 }
-
-                //send token
             }
         }
 
@@ -98,7 +98,48 @@ class LoginController
     }
     public static function resetPass(Router $router)
     {
-        echo "/resetPass";
+        $alerts = User::getAlerts();
+        //get token from the URL
+        $token = stzr($_GET["token"]) ?? null;
+        if (!$token) header("location: /");
+        //find an user with that token
+        $user = User::where("token", $token);
+        //if true the form to update it will not be shown
+        $accessError = false;
+        //check if the token belongs to a user
+        if (!$user) {
+            $accessError = true;
+            User::setAlert("error", "Token invalido o expirado");
+        }
+        //read the new password
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $newPassword = $_POST["password"] ?? '';
+            //validate the new password
+            $user->password = $newPassword;
+            $alerts = $user->validatePassword();
+
+            if (empty($alerts)) {
+                //create a hashed password
+                $user->hashPassword();
+                //delete token
+                $user->token = null;
+                //update the user
+                if ($user->save()) {
+                    header("location: /");
+                } else {
+                    User::setAlert("error", "No se pudo actualizar la contraseña. Intenta mas tarde..");
+                }
+            }
+        }
+
+        $alerts = User::getAlerts();
+
+        $data = [
+            "alerts" => $alerts,
+            "accessError" => $accessError
+        ];
+
+        $router->render("auth/password-recover", $data);
     }
     public static function create(Router $router)
     {
