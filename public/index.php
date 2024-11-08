@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../includes/app.php';
 
+//import classes
 use MVC\Router;
 use Controllers\LoginController;
+use Controllers\AppointmentController;
 
 $router = new Router();
 
@@ -25,6 +27,8 @@ $router->post(url: "/password-reset", fn: [LoginController::class, "resetPass"])
 //confirm account
 $router->get(url: "/message", fn: [LoginController::class, "message"]);
 $router->get(url: "/validate-account", fn: [LoginController::class, "validate"]);
+//private area
+$router->get(url: "/appointment", fn: [AppointmentController::class, "index"]);
 
 //check routes
 $router->verifyRoutes();

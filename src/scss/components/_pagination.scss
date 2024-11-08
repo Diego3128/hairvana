@@ -1,0 +1,18 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.pagination{
+    display: flex;
+    max-width: 90rem;
+    margin: 0 auto;
+    justify-content: center;
+    .button{
+        @include m.btnSmall(v.$blue);
+        padding: 2rem;
+        font-size: 2rem;
+
+        &.hide{
+            visibility: hidden;
+        }
+    }
+}

@@ -6,6 +6,7 @@
         @include m.grid();
         min-height: 100dvb;
         grid-template-columns: 1.3fr 2fr;
+        gap: 1rem;
     }
     .image{
         position: relative;

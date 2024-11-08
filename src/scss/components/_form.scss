@@ -15,15 +15,29 @@
             min-width: 10rem;
             font-weight: v.$bold;
         }
-        input[type="text"], 
-        input[type="password"],
-        input[type="email"],
-        input[type="text"],
-        input[type="tel"]{
+        input{
             border: none;
             width: 60%;
             padding: calc(v.$separation/4);
             border-radius: 1rem;
+        }
+        input{
+            &:read-only{
+                cursor: none;
+                background: transparent;
+                color: v.$white;
+            }
+        }
+    }
+
+    &.visible{
+        border: 3px v.$blue solid;
+        border-radius: 1rem;
+        padding: 2rem;
+        max-width: 52rem;
+
+        input{
+            width: 100%;
         }
     }
 

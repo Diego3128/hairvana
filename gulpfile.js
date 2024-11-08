@@ -31,7 +31,7 @@ function buildStyles() {
 function buildJS() {
     return src(paths.js)
         .pipe(sourcemaps.init())
-        .pipe(concat('bundle.js'))
+        .pipe(concat('app.js'))
         .pipe(terser())
         .pipe(rename({ suffix: '.min', dirname: 'js' }))
         .pipe(sourcemaps.write('.'))

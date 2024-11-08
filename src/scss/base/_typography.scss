@@ -37,13 +37,13 @@ p {
     content: '';
     position: absolute;
     display: block;
-    height: .4rem;
+    height: .3rem;
     background: v.$blue;
     bottom: 0;
     left: 0;
     width: 40%;
     border-radius: 2rem;
-    animation: bouncingBorder 5s infinite alternate-reverse ease-in-out;
+    animation: bouncingBorder 15s infinite alternate-reverse ease-in;
 }
 
 .page-description{

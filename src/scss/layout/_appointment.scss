@@ -1,0 +1,15 @@
+.section{
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+    min-height: 30rem;
+    .text-center{
+        text-align: center;
+    }
+    &.hide{
+        display: none;
+    }
+    &.show{
+        display: block;
+    }
+
+}
