@@ -5,6 +5,8 @@ declare(strict_types=1);
 require_once __DIR__ . '/../includes/app.php';
 
 //import classes
+
+use Controllers\APIController;
 use MVC\Router;
 use Controllers\LoginController;
 use Controllers\AppointmentController;
@@ -29,6 +31,9 @@ $router->get(url: "/message", fn: [LoginController::class, "message"]);
 $router->get(url: "/validate-account", fn: [LoginController::class, "validate"]);
 //private area
 $router->get(url: "/appointment", fn: [AppointmentController::class, "index"]);
+
+//Appointments API
+$router->get(url: "/api/services", fn: [APIController::class, "index"]);
 
 //check routes
 $router->verifyRoutes();

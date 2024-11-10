@@ -1,0 +1,49 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.service-list{
+
+    @include m.grid;
+
+    @include m.desktop{
+        @include m.grid(3);
+    }
+
+    .service{
+        padding: 1.2rem 1.2rem 0;
+        background: v.$white;
+        // background: transparent;
+        box-shadow: 0px 0px 5px v.$blue;
+        font-size: 1.6rem;
+        border-radius: 1rem;
+        color: black;
+        transition: box-shadow ease-in-out 600ms, transform ease-in 200ms;
+
+        @include m.desktop{
+            font-size: 1.8rem;
+        }
+
+        &:hover{
+            cursor: pointer;
+            box-shadow: 0px 0px 20px v.$blue;
+            transform: scale(1.02);
+        }
+    }
+
+    .service__name{
+        font-weight: v.$regular;
+        font-size: inherit;
+        color: inherit;
+
+    }
+    .service__price{
+        position: relative;
+        color: v.$blue;
+        font-size: 2rem;
+        font-weight: v.$bold;
+    }
+    .service__price::before{
+        content: "$";
+    }
+
+}

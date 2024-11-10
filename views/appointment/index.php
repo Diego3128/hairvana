@@ -13,7 +13,7 @@
     <div id="step-1" class="section hide">
         <h2>servicios</h2>
         <p class="text-center">Elije los servicios a continuación</p>
-        <div id="services" class="service-list"></div>
+        <div id="service-container" class="service-list"></div>
     </div>
 
     <div id="step-2" class="section hide">

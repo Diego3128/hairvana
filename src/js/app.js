@@ -16,6 +16,8 @@ function startApp() {
     paginatorBtns();
     //update page using paginator buttons
     updatePage();
+    //fetch services from the api
+    fetchAPI();
 
 }
 
@@ -89,4 +91,42 @@ function updatePage() {
         sectionStep++;
         paginatorBtns();
     });
+}
+//fetch services from the api
+async function fetchAPI() {
+    try {
+        const URL = "http://localhost:3000/api/services";
+        const result = await fetch(URL);
+        const data = await result.json();
+        showServices(data);
+    } catch (error) {
+        console.log(new Error(error));
+    }
+}
+//show services
+function showServices(services) {
+    const serviceContainer = document.getElementById("service-container") || null;
+
+    if (serviceContainer) {
+        //append each service
+        services.forEach(service => {
+            const { id, name, price } = service;
+            //service element
+            const serviceElement = document.createElement("DIV");
+            serviceElement.dataset.serviceId = id;
+            serviceElement.classList.add("service");
+            //service name element
+            const serviceName = document.createElement("P");
+            serviceName.textContent = name;
+            serviceName.classList.add("service__name");
+            //service price element
+            const servicePrice = document.createElement("P");
+            servicePrice.textContent = price;
+            servicePrice.classList.add("service__price");
+            //append details into the service
+            serviceElement.append(serviceName, servicePrice);
+            //append service into the service container element
+            serviceContainer.append(serviceElement)
+        })
+    }
 }
