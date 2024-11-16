@@ -1,32 +1,35 @@
 @use '../base/variables' as v;
 .alerts-container{
     padding: 1rem 3rem;
-    .alert{
-        display: block;
-        border-radius: 1rem;
-        padding: 1.5rem;
-        max-width: 60rem;
-        text-transform: uppercase;
-        color: v.$white;
-        background-color: v.$darkerBlack;
-        margin: 0 auto 1.3rem;
-        text-align: center;
-        font-weight: v.$bold;
-        border: 3px solid v.$blue;
-        font-size: 1.5rem;
-        transition: transform 300ms ease-in-out;
-        &.error{
-        border-color: v.$brightRed;
-        }
-        &.success{
-            border-color: v.$brightGreen;
-            }
-
-        &:hover{
-            transform: scale(1.05);
-        }
-    }
 }
 
+.alert{
+    display: block;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 60rem;
+    text-transform: uppercase;
+    color: v.$white;
+    background-color: v.$darkerBlack;
+    margin: 0 auto 1.3rem;
+    text-align: center;
+    font-weight: v.$bold;
+    border: 3px solid v.$blue;
+    font-size: 1.5rem;
+    transition: transform 200ms ease-in-out;
+    &.error{
+    border-color: v.$brightRed;
+    }
+    &.success{
+        border-color: v.$brightGreen;
+        }
 
+    &:hover{
+        transform: scale(1.05);
+    }
+
+    &.hide{
+        transform: scale(0);
+    }
+}
 

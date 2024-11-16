@@ -16,7 +16,7 @@
         box-shadow: 0px 0px 5px v.$blue;
         font-size: 1.6rem;
         border-radius: 1rem;
-        color: black;
+        color: v.$darkerBlack;
         transition: box-shadow ease-in-out 600ms, transform ease-in 200ms;
 
         @include m.desktop{
@@ -28,8 +28,18 @@
             box-shadow: 0px 0px 20px v.$blue;
             transform: scale(1.02);
         }
-    }
 
+        &.selected{
+            background: v.$blue;
+            color: v.$white;
+            .service__price{
+                color: inherit;
+            }
+        }
+    }
+    .service__name, .service__price{
+        pointer-events: none;
+    }
     .service__name{
         font-weight: v.$regular;
         font-size: inherit;

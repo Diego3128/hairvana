@@ -1,0 +1,30 @@
+@use '../base/variables' as v;
+
+
+.summary-content{
+    .appointment-services{
+        margin-bottom: 5rem;
+    }
+    .service-element{
+        border-bottom: 1px solid v.$gray;
+    }
+    
+    p{
+        text-transform: capitalize;
+        font-size: 2rem;
+    }
+
+    span{
+        font-size: v.$bold;
+        color: v.$blue;
+    }
+
+    .button{
+        &.submit{
+            background: v.$white;
+            color: v.$darkerBlack;
+        }
+    }
+
+}
+

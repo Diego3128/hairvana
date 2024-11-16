@@ -10,6 +10,8 @@
         <button class="tab" data-step="3">resumen</button>
     </nav>
 
+    <div class="alerts"></div>
+
     <div id="step-1" class="section hide">
         <h2>servicios</h2>
         <p class="text-center">Elije los servicios a continuación</p>
@@ -22,11 +24,11 @@
 
         <form class="form visible">
             <div class="field">
-                <label for="nombre">Nombre</label>
+                <label for="customer-name">Nombre</label>
                 <input
                     type="text"
                     name="name"
-                    id="nombre"
+                    id="customer-name"
                     maxlength="60"
                     value="<?php echo stzr($username) ?>"
                     readonly
@@ -38,8 +40,11 @@
                 <input
                     type="date"
                     name="date"
-                    id="date" />
+                    id="date"
+                    <?php date_default_timezone_set('America/Bogota'); ?>
+                    min="<?php echo date("Y-m-d", strtotime("+1 day")); ?>" />
             </div>
+
 
             <div class="field">
                 <label for="time">Hora</label>
@@ -52,7 +57,7 @@
         </form>
     </div>
 
-    <div id="step-3" class="section hide">
+    <div id="step-3" class="section hide summary-content">
         <h2>Resumen</h2>
         <p class="text-center">Verifica la información:</p>
     </div>
