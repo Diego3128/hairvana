@@ -47,5 +47,38 @@
     .text-blue{
         color: v.$blue;
     }
+
 }
 
+.bar-info{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .content{
+        display: flex;
+        justify-content: space-between;
+        column-gap: 2rem;
+        font-size: 1.5rem;
+        background: v.$blue;
+        padding: .8rem 2rem .8rem;
+        border-radius: 0 0 1rem 1rem;
+    }
+    .logout-img{
+        width: 20px;
+    }
+    .logout-img:hover{
+        transform: scale(1.1);
+    }
+    
+
+    p{
+        font-size: inherit;
+        margin: 0;
+        padding: 0;
+    }
+}

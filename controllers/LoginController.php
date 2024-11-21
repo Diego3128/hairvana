@@ -56,8 +56,9 @@ class LoginController
     }
     public static function logout(Router $router)
     {
-        // $router->get(url: "/logout", fn: [LoginController::class, "logout"]);
-        echo "/logout";
+
+        $_SESSION = [];
+        header("location: /");
     }
     public static function forgotPass(Router $router)
     {
