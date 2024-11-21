@@ -34,6 +34,8 @@ $router->get(url: "/appointment", fn: [AppointmentController::class, "index"]);
 
 //Appointments API
 $router->get(url: "/api/services", fn: [APIController::class, "index"]);
+//read data
+$router->post(url: "/api/appointments", fn: [APIController::class, "save"]);
 
 //check routes
 $router->verifyRoutes();

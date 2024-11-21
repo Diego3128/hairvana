@@ -145,15 +145,19 @@ abstract class ActiveRecord
         //add a ' to the first and last value
         $query .= " VALUES ('" . $values . "')";
 
-        //do the query to save a new property
+        //do the query to save a new record
         $result = self::$db->query($query);
         //insertion queries return a boolean
 
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
+        return [
+            "result" => $result,
+            "information" => [
+                "insert_id" => self::$db->insert_id,
+                "affected_rows" => self::$db->affected_rows,
+                "error" => self::$db->error,
+                "info" => self::$db->info
+            ]
+        ];
     }
     //delete a record by its id
     public function delete(): void

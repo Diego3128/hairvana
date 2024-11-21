@@ -165,7 +165,7 @@ class LoginController
 
                     if ($email->sendConfirmationEmail()) {
                         $result = $user->save();
-                        if ($result) header("location: /message?email=" . $user->email);
+                        if ($result["result"]) header("location: /message?email=" . $user->email);
                     }
                 }
             }

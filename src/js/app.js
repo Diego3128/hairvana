@@ -4,6 +4,7 @@ const initialStep = 1;
 const lastStep = 3;
 //info about an appointment
 const appointment = {
+    id: "",
     name: "",
     date: "",
     hour: "",
@@ -171,9 +172,10 @@ function pickService(service) {
     //change the styles of the element
     if (serviceElement) serviceElement.classList.add("selected");
 }
-// add the customer's name to the appointment object
+// add the customer's info to the appointment object
 function customerInfo() {
-    appointment.name = document.getElementById("customer-name").value || '';
+    appointment.name = document.getElementById("customer-name").value || "";
+    appointment.id = document.querySelector(".user-id").value || "";
 }
 // add the customer's chosen date to the appointment object
 function chooseDate() {
@@ -337,9 +339,41 @@ function formatHour(hour, region) {
     }
 }
 //
-function bookAppointment() {
-    const data = new FormData();
-    data.set("username", appointment.name);
-    console.log(data);
-    console.log([...data])
+async function bookAppointment() {
+    const { id, date, name, hour, services } = appointment;
+    const serviceId = services.map(service => service.id)
+
+    const formData = new FormData();
+    formData.set("date", date);
+    formData.set("hour", hour);
+    formData.set("userId", id);
+    formData.set("services", serviceId);
+
+    try {
+        //post request to the API
+        const URL = "http://localhost:3000/api/appointments";
+        const response = await fetch(URL, {
+            method: "post",
+            body: formData
+        });
+        const result = await response.json();
+
+        if (result.result) {
+            Swal.fire({
+                title: "Cita agendada correctamente!",
+                text: "Gracias por usas nuestros servicios " + name + ".",
+                icon: "success"
+            }).then(() => {
+                window.location.reload();
+            })
+        }
+    } catch (e) {
+        Swal.fire({
+            title: "Error",
+            text: "Ocurrio un error. Intenta más tarde...",
+            icon: "error"
+        }).then(() => {
+            window.location.reload();
+        })
+    }
 }

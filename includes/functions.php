@@ -28,3 +28,10 @@ function stzr(string | null $html): string
     $s = htmlspecialchars($html);
     return $s;
 }
+//check if the user is authenticated
+function isAuth(): void
+{
+    if (!isset($_SESSION["loggedin"])) {
+        header("location: /");
+    }
+}

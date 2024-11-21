@@ -21,13 +21,11 @@ class Router
     {
         //start session
         session_start();
-        $auth = $_SESSION["loggedin"] ?? null;
-        //protected routes
-        $protectedRoutes = ["/no-protected-routes-yet"];
         //info about current request
         $currentUrl = $_SERVER["PATH_INFO"] ?? "/";
         $requestMethod = $_SERVER["REQUEST_METHOD"];
 
+        $fn = null;
         //identify request method
         if ($requestMethod === "GET") {
             //read function
@@ -35,10 +33,6 @@ class Router
         } elseif ($requestMethod === "POST") {
             //read function
             $fn = $this->postRoutes[$currentUrl] ?? null;
-        }
-        //check protected routes
-        if (in_array($currentUrl, $protectedRoutes) && !$auth) {
-            header("location: /");
         }
         //check if the controller exists
         if ($fn) {
