@@ -6,6 +6,7 @@ require_once __DIR__ . '/../includes/app.php';
 
 //import classes
 
+use Controllers\AdminController;
 use Controllers\APIController;
 use MVC\Router;
 use Controllers\LoginController;
@@ -31,6 +32,8 @@ $router->get(url: "/message", fn: [LoginController::class, "message"]);
 $router->get(url: "/validate-account", fn: [LoginController::class, "validate"]);
 //private area
 $router->get(url: "/appointment", fn: [AppointmentController::class, "index"]);
+$router->get(url: "/admin", fn: [AdminController::class, "index"]);
+
 
 //Appointments API
 $router->get(url: "/api/services", fn: [APIController::class, "index"]);

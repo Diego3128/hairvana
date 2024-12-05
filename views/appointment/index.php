@@ -1,3 +1,7 @@
+<?php
+include_once __DIR__ . "/../templates/info-bar.php";
+?>
+
 <div class="bar-info">
     <div class="content">
         <p class="user-name">Bienvenid@ <?php echo $username ?></p>

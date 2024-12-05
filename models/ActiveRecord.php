@@ -47,6 +47,13 @@ abstract class ActiveRecord
 
         return array_shift($result);
     }
+    // plain sql query (used for advanced queries, for instance, joining tables)
+    public static function SQL(string $query): array | bool
+    {
+        $query = trim($query);
+
+        return $result = self::querySQL($query);
+    }
     //Get a certain number of records
     public static function get(int $maxRecords)
     {
