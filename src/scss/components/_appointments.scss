@@ -1,0 +1,72 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.appointment-list {
+  display: grid;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include m.tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.desktopLarge {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  li.appointment {
+    background-color: v.$blackbg;
+    color: v.$white;
+    border: 1px solid v.$gray;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    font-family: v.$main_font;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-.5rem);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      background-color: v.$darkerBlack;
+    }
+
+    .appointment_id,
+    .appointment_date,
+    .appointment_time {
+      font-size: 1.1rem;
+      font-weight: v.$bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .appointment_customer,
+    .appointment_email {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: v.$gray;
+    }
+
+    .appointment_services {
+      font-size: 1.4rem;
+      font-weight: v.$bold;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      color: v.$blue;
+    }
+
+    .appointment_service {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+
+      span.price {
+        color: v.$green;
+        font-weight: v.$bold;
+        padding-left: .5rem;
+      }
+    }
+
+  
+  }
+}

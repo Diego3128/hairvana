@@ -50,6 +50,14 @@ p {
     text-align: center;
 }
 
+.title-plain{
+    font-size: 2.3rem;
+}
+.title-plain::after{
+    display: none;
+    animation: none;
+}
+
 @keyframes bouncingBorder {
     to{
         width: 100%;
