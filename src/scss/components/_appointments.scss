@@ -2,18 +2,32 @@
 @use '../base/mixins' as m;
 
 .appointment-list {
+  position: relative;
   display: grid;
   gap: 2rem;
-  padding: 0;
+  padding: 2rem 1.2rem;
   margin: 0;
   list-style: none;
+  min-height: 35rem;
+
+  border: 3px solid #626262ba;
+  border-radius: 1rem;
 
   @include m.tablet {
     grid-template-columns: repeat(2, 1fr);
+    height: 35rem;
+    overflow-y: scroll;
   }
 
   @include m.desktopLarge {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  h3.title-absolute{
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
   }
 
   li.appointment {
@@ -21,7 +35,7 @@
     color: v.$white;
     border: 1px solid v.$gray;
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 1.3rem;
     font-family: v.$main_font;
     position: relative;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -41,9 +55,18 @@
       margin-bottom: 0.5rem;
     }
 
+    .appointment_id{
+      background: v.$blue;
+      position: absolute;
+      top: -12px;
+      right: -1px;
+      padding: 1rem;
+      border-radius: 0 15px 0 20px;
+    }
+
     .appointment_customer,
     .appointment_email {
-      font-size: 1rem;
+      font-size: 1.2rem;
       margin-bottom: 0.5rem;
       color: v.$gray;
     }
@@ -57,7 +80,7 @@
     }
 
     .appointment_service {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-bottom: 0.5rem;
 
       span.price {
@@ -67,6 +90,14 @@
       }
     }
 
+    .appointment_total{
+      color: v.$green;
+    }
+
+    .appointment_total::before{
+      content: "Total: ";
+      color: v.$white;
+    }
   
   }
 }

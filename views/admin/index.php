@@ -9,27 +9,37 @@ include_once __DIR__ . "/../templates/info-bar.php";
     <form class="form">
         <div class="field">
             <label for="date">Fecha</label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" value="<?php echo $selectedDate ?>">
         </div>
+        <input id="seek-apt" type="submit" value="Buscar" class="button submit seek">
     </form>
 </div>
 
 <div class="admin-appointments">
-    <!-- gather each 'appointment-service record' by its appoitment id 
-     (the id attribute of the object is the id of the appointment in the appoitnments table (check the sql query in the controller) )
-     because they are the same appoitnment, only with a different service
-    -->
+
+
     <ul class="appointment-list">
         <?php
+        //gather each 'appointment-service record' by its appoitment id 
+        //(the id attribute of the object is the id of the appointment in the appointments table (check the sql query in the controller) )
+        //because they are the same appoitnment, only with a different service
+
         $previousId = null; // Track the previous ID
-        $appointmentsHtml = '';
+        $appointmentsHtml = ''; //build the html
+        $appointmentTotal = 0; // total price of the appointment
+        // debugAndFormat($appointments);
+        $totalAppointments = count($appointments); // total number of appointments, (to know the end of the loop and close the last <li>)
 
-        // total number of appointments to know the end of the loop
-        $totalAppointments = count($appointments);
+        if (!$totalAppointments) echo "<h3 class='title-absolute'>No hay citas para este día</h3>";
 
-        foreach ($appointments as $index => $appointment) {
+        foreach ($appointments as $index => $appointment) :
+            //current and next id
+            $currentId = $appointment->id;
+            $nextId = $appointments[$index + 1]->id ?? null;
+
             //Check if the current id is different from the last
             if ($appointment->id != $previousId) {
+
                 //if it's NOT the first record, close the last <li>
                 if ($previousId !== null) $appointmentsHtml .= "</li>";
 
@@ -45,17 +55,30 @@ include_once __DIR__ . "/../templates/info-bar.php";
 
             //add the services to the current <li>
             $appointmentsHtml .= "<p class='appointment_service'>" . $appointment->service . "<span class='price'> $" . $appointment->price . "</span></p>";
+            //add the price to the total price
+            $appointmentTotal += $appointment->price;
+
+            // If the next appoitnment id is different, then print the total price of that appoitnment
+            if ($currentId != $nextId) {
+                // echo "<p>print total of this appointment {$appointmentTotal}</p>";
+                $appointmentsHtml .= "<p class='appointment_total'> $" . $appointmentTotal .  "</p>";
+                //restart the  total price
+                $appointmentTotal = 0;
+            }
 
             // update previousId
             $previousId = $appointment->id;
 
             //check if it's the last iteration
-            if ($index === $totalAppointments - 1)  $appointmentsHtml .= "</li>"; // Close last <li>
+            if (!$nextId)  $appointmentsHtml .= "</li>"; // Close last <li>
 
-        }
-        // print html
+        endforeach;
+        // print html after the end of the foreach
         echo $appointmentsHtml;
         ?>
     </ul>
 
 </div>
+
+<?php $script = "<script src='/build/js/utils/admin/dateSeeker.min.js'></script>";
+?>

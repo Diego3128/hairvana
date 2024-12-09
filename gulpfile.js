@@ -29,15 +29,26 @@ function buildStyles() {
 }
 
 function buildJS() {
-    return src(paths.js)
+    return src(paths.js, { base: './src' }) // keeps the same structure of the ./src folder
         .pipe(sourcemaps.init())
-        .pipe(concat('app.js'))
-        .pipe(terser())
-        .pipe(rename({ suffix: '.min', dirname: 'js' }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(dest('./public/build/'))
-
+        .pipe(terser()) //uglify the code //comment to use the debugger
+        .pipe(rename({ suffix: '.min' })) // add .min
+        .pipe(sourcemaps.write('.')) // writte sourcemaps
+        .pipe(dest('./public/build/')); // final folder
 }
+
+//Use version below to concat everything in a single file: 
+
+// function buildJS() {
+//     return src(paths.js)
+//         .pipe(sourcemaps.init())
+//         .pipe(concat('app.js'))
+//         .pipe(terser())
+//         .pipe(rename({ suffix: '.min', dirname: 'js' }))
+//         .pipe(sourcemaps.write('.'))
+//         .pipe(dest('./public/build/'))
+
+// }
 
 export async function images(done) {
     const srcDir = './src/img';
