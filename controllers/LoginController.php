@@ -34,7 +34,7 @@ class LoginController
                         //check if it's an admin
                         if ($user->admin === "1") {
                             //admin
-                            $_SESSION["admin"] = $user->admin ?? null;
+                            $_SESSION["admin"] = true;
                             header("location: /admin");
                         } else {
                             //client

@@ -34,11 +34,13 @@ $router->get(url: "/validate-account", fn: [LoginController::class, "validate"])
 $router->get(url: "/appointment", fn: [AppointmentController::class, "index"]);
 $router->get(url: "/admin", fn: [AdminController::class, "index"]);
 
-
 //Appointments API
 $router->get(url: "/api/services", fn: [APIController::class, "index"]);
 //read data
 $router->post(url: "/api/appointments", fn: [APIController::class, "save"]);
+//delete and appointment
+$router->post(url: "/api/delete", fn: [APIController::class, "deleteApt"]);
+
 
 //check routes
 $router->verifyRoutes();

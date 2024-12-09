@@ -43,4 +43,22 @@ class APIController
             }
         }
     }
+    //deletes an appointment
+    public static function deleteApt()
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $appointmentId = $_POST["apt_id"];
+
+            $appointment = Appointment::findById($appointmentId);
+
+            if ($appointment) {
+                $appointment->delete();
+                //redirect to the previous page
+                header("location: " . $_SERVER["HTTP_REFERER"]);
+            } else {
+                header("location: /admin ");
+            }
+        }
+    }
 }

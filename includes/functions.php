@@ -31,7 +31,12 @@ function stzr(string | null $html): string
 //check if the user is authenticated
 function isAuth(): void
 {
-    if (!isset($_SESSION["loggedin"])) {
-        header("location: /");
-    }
+    if (!isset($_SESSION["loggedin"]))  header("location: /");
+}
+//check if the user is an admin
+function isAdmin(): void
+{
+    isAuth();
+
+    if (!isset($_SESSION["admin"])) header("location: /appointment");
 }

@@ -45,6 +45,11 @@ include_once __DIR__ . "/../templates/info-bar.php";
 
                 //create a new <li> for a new appointment
                 $appointmentsHtml .= "<li class='appointment'>";
+                $appointmentsHtml .= "<form action='/api/delete' method='post' >";
+                $appointmentsHtml .= "<input type='hidden' name='apt_id' value={$appointment->id}>";
+                $appointmentsHtml .= "<input class='delete' type='submit' value='Eliminar'>";
+                $appointmentsHtml .= "</form>";
+
                 $appointmentsHtml .= "<p class='appointment_id'>ID: " . $appointment->id . "</p>";
                 $appointmentsHtml .= "<p class='appointment_date'>Fecha: " . $appointment->date . "</p>";
                 $appointmentsHtml .= "<p class='appointment_time'>Hora: " . $appointment->time . "</p>";

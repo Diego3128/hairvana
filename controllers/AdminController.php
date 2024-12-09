@@ -10,7 +10,7 @@ class AdminController extends ActiveRecord
 {
     public static function index(Router $router)
     {
-        isAuth();
+        isAdmin();
 
         $appointments = [];
 
