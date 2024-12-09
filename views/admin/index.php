@@ -85,5 +85,8 @@ include_once __DIR__ . "/../templates/info-bar.php";
 
 </div>
 
-<?php $script = "<script src='/build/js/utils/admin/dateSeeker.min.js'></script>";
+<?php $script = "
+<script src='/build/js/utils/admin/dateSeeker.min.js'></script>
+<script src='/build/js/utils/admin/dropdown.min.js'></script>
+";
 ?>

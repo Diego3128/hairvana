@@ -40,9 +40,10 @@
         }
     }
     .app{
-        width: 90%;
+        width: min(90%, 80rem );
         margin: 0 auto;
         padding: 8rem 0;
+        position: relative;
     }
     .text-blue{
         color: v.$blue;
@@ -67,6 +68,7 @@
         background: v.$blue;
         padding: .8rem 2rem .8rem;
         border-radius: 0 0 1rem 1rem;
+        margin-right: -2.5rem;
     }
     .logout-img{
         width: 20px;
@@ -80,5 +82,58 @@
         font-size: inherit;
         margin: 0;
         padding: 0;
+    }
+}
+
+/* main container*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+    top: -2.5rem;
+
+    /* dropdown button */
+    .dropdown-toggle {
+        background-color: v.$blue;
+        color: v.$white;
+        padding: 1rem 2rem;
+        border: none;
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .dropdown-toggle, .dropdown-menu{
+        border-radius: .5rem;
+    }
+
+    /* dropdown menu */
+    .dropdown-menu {
+        position: absolute;
+        top: 110%; /* show below the button */
+        left: 0;
+        background-color: v.$white;
+        min-width: 15rem;
+        z-index: 10; //show over other elements
+        border-radius: 1rem;
+    }
+
+    .dropdown-menu.hide{ //when both class exist in the element
+        display: none;
+    }
+
+    /* link styles */
+    .dropdown-menu .button {
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+        color: v.$darkGray;
+        font-size: 1.4rem;
+        border-bottom: 1px solid v.$gray;
+    }
+    .dropdown-menu .button:last-child{
+        border-bottom: none;
+    }
+
+    .dropdown-menu .button:hover {
+        color: v.$blue;
     }
 }
