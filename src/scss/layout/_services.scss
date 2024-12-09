@@ -2,18 +2,16 @@
 @use '../base/mixins' as m;
 
 .service-list{
-
-    @include m.grid;
-
-    @include m.desktop{
-        @include m.grid(3);
-    }
-
     max-height: 30rem;
     padding: 2rem;
     overflow: auto;
-  border: 3px solid #626262ba;
-  border-radius: 1rem;
+    border: 3px solid #626262ba;
+    border-radius: 1rem;
+
+    @include m.grid;
+    @include m.desktop{
+        @include m.grid(3);
+    }
 
     .service{
         padding: 1.2rem 1.2rem 0;

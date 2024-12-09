@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use DateTimeZone;
 use Model\ActiveRecord;
 use Model\AdminAppointment;
 use MVC\Router;
@@ -11,6 +12,9 @@ class AdminController extends ActiveRecord
     public static function index(Router $router)
     {
         isAdmin();
+
+        //setting the time zone
+        date_default_timezone_set("America/Bogota");
 
         $appointments = [];
 
