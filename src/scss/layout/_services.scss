@@ -9,6 +9,12 @@
         @include m.grid(3);
     }
 
+    max-height: 30rem;
+    padding: 2rem;
+    overflow: auto;
+  border: 3px solid #626262ba;
+  border-radius: 1rem;
+
     .service{
         padding: 1.2rem 1.2rem 0;
         background: v.$white;
