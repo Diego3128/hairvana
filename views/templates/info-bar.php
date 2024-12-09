@@ -7,7 +7,7 @@
 
 <?php if (isset($_SESSION["admin"])): ?>
     <div class="dropdown">
-        <button class="dropdown-toggle">Actiones</button>
+        <button class="dropdown-toggle">Más acciones</button>
         <div class="dropdown-menu hide">
             <a class="button" href="/admin">Ver citas</a>
             <a class="button" href="/services">Ver servicios</a>

@@ -11,6 +11,7 @@ use Controllers\APIController;
 use MVC\Router;
 use Controllers\LoginController;
 use Controllers\AppointmentController;
+use Controllers\ServiceController;
 
 $router = new Router();
 
@@ -41,6 +42,13 @@ $router->post(url: "/api/appointments", fn: [APIController::class, "save"]);
 //delete and appointment
 $router->post(url: "/api/delete", fn: [APIController::class, "deleteApt"]);
 
+//service CRUD
+$router->get(url: "/services", fn: [ServiceController::class, "index"]);
+$router->get(url: "/services/create", fn: [ServiceController::class, "create"]);
+$router->post(url: "/services/create", fn: [ServiceController::class, "create"]);
+$router->get(url: "/services/update", fn: [ServiceController::class, "update"]);
+$router->post(url: "/services/update", fn: [ServiceController::class, "update"]);
+$router->post(url: "/services/delete", fn: [ServiceController::class, "delete"]);
 
 //check routes
 $router->verifyRoutes();
