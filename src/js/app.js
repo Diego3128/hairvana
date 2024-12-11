@@ -114,7 +114,7 @@ function updatePage() {
 //fetch services from the api
 async function fetchAPI() {
     try {
-        const URL = "http://localhost:3000/api/services";
+        const URL = `${location.origin}/api/services`;
         const result = await fetch(URL);
         const data = await result.json();
         showServices(data);
@@ -351,7 +351,7 @@ async function bookAppointment() {
 
     try {
         //post request to the API
-        const URL = "http://localhost:3000/api/appointments";
+        const URL = `${location.origin}/api/appointments`;
         const response = await fetch(URL, {
             method: "post",
             body: formData

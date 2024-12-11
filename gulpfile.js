@@ -27,8 +27,17 @@ function buildStyles() {
         .pipe(postcss(plugins))
         .pipe(dest('./public/build/css/', { sourcemaps: '.' }));
 }
-
+//build javascript files, keeping the same folder structure
 function buildJS() {
+    return src(paths.js, { base: './src' }) // keeps the same structure of the ./src folder
+        .pipe(sourcemaps.init())
+        .pipe(rename({ suffix: '.min' })) // add .min
+        .pipe(sourcemaps.write('.')) // writte sourcemaps
+        .pipe(dest('./public/build/')); // final folder
+}
+
+//Version below for production
+function buildJSProduction() {
     return src(paths.js, { base: './src' }) // keeps the same structure of the ./src folder
         .pipe(sourcemaps.init())
         .pipe(terser()) //uglify the code //comment to use the debugger
@@ -36,19 +45,6 @@ function buildJS() {
         .pipe(sourcemaps.write('.')) // writte sourcemaps
         .pipe(dest('./public/build/')); // final folder
 }
-
-//Use version below to concat everything in a single file: 
-
-// function buildJS() {
-//     return src(paths.js)
-//         .pipe(sourcemaps.init())
-//         .pipe(concat('app.js'))
-//         .pipe(terser())
-//         .pipe(rename({ suffix: '.min', dirname: 'js' }))
-//         .pipe(sourcemaps.write('.'))
-//         .pipe(dest('./public/build/'))
-
-// }
 
 export async function images(done) {
     const srcDir = './src/img';
@@ -91,5 +87,10 @@ export function dev() {
     watch(paths.js, buildJS);
     watch('src/img/**/*.{png,jpg}', images)
 }
+// "npm run build"
+export function build(done) {
+    return series(buildJSProduction, buildStyles, images)(done);
+}
 
+//default task when executing "npm run dev"
 export default series(buildJS, buildStyles, images, dev)

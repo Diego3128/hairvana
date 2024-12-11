@@ -22,7 +22,7 @@ class Router
         //start session
         session_start();
         //info about current request
-        $currentUrl = $_SERVER["PATH_INFO"] ?? "/";
+        $currentUrl = strtok($_SERVER["REQUEST_URI"], "?") ?? "/";
         $requestMethod = $_SERVER["REQUEST_METHOD"];
 
         $fn = null;

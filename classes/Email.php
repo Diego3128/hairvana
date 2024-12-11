@@ -25,11 +25,11 @@ class Email
         $phpmailer = new PHPMailer();
         //settings form SMTP
         $phpmailer->isSMTP();
-        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->Host = $_ENV["EMAIL_HOST"];
         $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 2525;
-        $phpmailer->Username = '3a249139007f78';
-        $phpmailer->Password = '31577d65d015b6';
+        $phpmailer->Port = $_ENV["EMAIL_PORT"];
+        $phpmailer->Username = $_ENV["EMAIL_USERNAME"];
+        $phpmailer->Password = $_ENV["EMAIL_PASSWORD"];
         //set email
         //set email
         $phpmailer->setFrom("cuentashairvana@gmail.com", "harivana"); //domain
@@ -54,7 +54,7 @@ class Email
         $content .= "<div class='container'>";
         $content .= "<h1>Bienvenido a HAIRVANA, {$this->name}!</h1>";
         $content .= "<p>¡Gracias por crear tu cuenta! Para activar tu cuenta y comenzar a disfrutar de nuestros servicios, haz click en el botón a continuación:</p>";
-        $content .= '<p><a href="http://localhost:3000/validate-account?token=' . $this->token . '">Confirmar cuenta</a></p>';
+        $content .= '<p><a href="' . $_ENV["APP_URL"] . '/validate-account?token=' . $this->token . '">Confirmar cuenta</a></p>';
         $content .= "<p>Si no solicitaste esta cuenta, puedes ignorar este mensaje.</p>";
         $content .= "<p>Saludos,<br>El equipo de HAIRVANA</p>";
         $content .= "</div>";
@@ -66,7 +66,7 @@ class Email
         // Texto en caso de que el HTML no esté disponible
         $phpmailer->AltBody = "Hola {$this->name},\n\n"
             . "Gracias por crear tu cuenta en HAIRVANA. Actívala visitando el siguiente enlace:\n"
-            . "http://localhost:3000/validate-account?token={$this->token}\n\n"
+            . $_ENV["APP_URL"] .  "/validate-account?token={$this->token}\n\n"
             . "Si no has solicitado esta cuenta, puedes ignorar este mensaje.\n\n"
             . "Saludos,\nEl equipo de HAIRVANA";
 
@@ -83,11 +83,11 @@ class Email
         $phpmailer = new PHPMailer();
         //settings form SMTP
         $phpmailer->isSMTP();
-        $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+        $phpmailer->Host = $_ENV["EMAIL_HOST"];
         $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 2525;
-        $phpmailer->Username = '3a249139007f78';
-        $phpmailer->Password = '31577d65d015b6';
+        $phpmailer->Port = $_ENV["EMAIL_PORT"];
+        $phpmailer->Username = $_ENV["EMAIL_USERNAME"];
+        $phpmailer->Password = $_ENV["EMAIL_PASSWORD"];
         //set email
         //set email
         $phpmailer->setFrom("cuentashairvana@gmail.com", "harivana"); //domain
@@ -112,7 +112,7 @@ class Email
         $content .= "<div class='container'>";
         $content .= "<h1>Restablece tu contraseña en HAIRVANA, {$this->name}.</h1>";
         $content .= "<p>Para crear una nueva contraseña, haz click en el botón a continuación:</p>";
-        $content .= '<p><a href="http://localhost:3000/password-reset?token=' . $this->token . '">Restablecer contraseña</a></p>';
+        $content .= '<p><a href=" ' . $_ENV["APP_URL"] . '/password-reset?token=' . $this->token . '">Restablecer contraseña</a></p>';
         $content .= "<p>Si no solicitaste esto puedes ignorar el mensaje.</p>";
         $content .= "<p>Saludos,<br>El equipo de HAIRVANA</p>";
         $content .= "</div>";
@@ -124,7 +124,7 @@ class Email
         // Texto en caso de que el HTML no esté disponible
         $phpmailer->AltBody = "Restablece tu contraseña en HAIRVANA, {$this->name}.,\n\n"
             . "Para crear una nueva contraseña visita el siguiente enlace:\n"
-            . "http://localhost:3000/password-reset?token=$this->token \n\n"
+            . $_ENV["APP_URL"] . "/password-reset?token=$this->token \n\n"
             . "Si no solicitaste esto puedes ignorar el mensaje..\n\n"
             . "Saludos,\nEl equipo de HAIRVANA";
 
