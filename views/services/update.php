@@ -11,7 +11,7 @@ include __DIR__ . "/../templates/info-bar.php";
 
 <form method="post" class="form">
     <?php include_once __DIR__ . "/form.php"; ?>
-    <input type="submit" class="button submit" value="Crear">
+    <input type="submit" class="button submit" value="Guardar">
 </form>
 
 
