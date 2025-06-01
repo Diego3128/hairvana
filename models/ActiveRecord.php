@@ -11,7 +11,7 @@ abstract class ActiveRecord
     // each column name of a certain table
     protected static $dbColumns = [];
     // Possible erros when trying to create an instance
-    protected static $alerts = ['AR' => "active record"];
+    protected static $alerts = ["error" => ["i am an error like you!", "i was joking"], "success" => ["message example"]];
 
     // set the connection to db
     public static function setDB($database)
